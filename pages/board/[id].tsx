@@ -7,14 +7,14 @@ import BoardDetailWrite from "@/components/BoardDetailWrite";
 import BoardDetailInfo from "@/components/BoardDetailInfo";
 import BoardDetailComments from "@/components/BoardDetailComments";
 import { getArticleDetail, getComments } from "@/lib/api";
-import { Articles, Comments } from "@/lib/type";
+import { Article, Comments } from "@/lib/type";
 import back_ic from "@/public/ic_back.svg";
 
 export default function BoardDetail() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [article, setArticle] = useState<Articles>({
+  const [article, setArticle] = useState<Article>({
     content: "",
     createdAt: "",
     id: 0,

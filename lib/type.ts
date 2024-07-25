@@ -1,4 +1,4 @@
-export interface Articles {
+export interface Article {
   content: string;
   createdAt: string;
   id: number;
@@ -13,7 +13,7 @@ export interface Articles {
 }
 
 export interface PostProps {
-  article: Articles;
+  article: Article;
   [key: string]: any;
 }
 

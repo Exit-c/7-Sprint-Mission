@@ -7,7 +7,7 @@ import SearchForm from "@/components/SearchForm";
 import SelectBtn from "@/components/SelectBtn";
 import GeneralPost from "@/components/GeneralPost";
 import { getArticles } from "@/lib/api";
-import { Articles } from "@/lib/type";
+import { Article } from "@/lib/type";
 import { Order } from "@/lib/type";
 import useDevice from "@/lib/useDevice";
 
@@ -32,10 +32,10 @@ export default function Board() {
   const { isDesktop, isTablet, isMobile } = useDevice();
   const [order, setOrder] = useState<Order>("recent");
   const [bestPageSize, setBestPageSize] = useState<number>(3);
-  const [bestArticles, setBestArticles] = useState<Articles[]>([
+  const [bestArticles, setBestArticles] = useState<Article[]>([
     initialArticleState,
   ]);
-  const [generalArticles, setGeneralArticles] = useState<Articles[]>([
+  const [generalArticles, setGeneralArticles] = useState<Article[]>([
     initialArticleState,
   ]);
 
