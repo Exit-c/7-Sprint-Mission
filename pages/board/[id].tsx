@@ -47,9 +47,6 @@ export default function BoardDetail() {
     getArticlesApi();
   }, [id]);
 
-  console.log(article);
-  console.log("comments", comments);
-
   return (
     <div className={styles.container}>
       <section className={styles["info-section"]}>
