@@ -30,19 +30,7 @@ export default function BoardDetail() {
 
   const [comments, setComments] = useState<Comments>({
     nextCursor: 0,
-    list: [
-      {
-        writer: {
-          image: "",
-          nickname: "",
-          id: 0,
-        },
-        updatedAt: "",
-        createdAt: "",
-        content: "",
-        id: 0,
-      },
-    ],
+    list: [],
   });
 
   useEffect(() => {
