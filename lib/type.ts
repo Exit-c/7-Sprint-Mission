@@ -17,19 +17,19 @@ export interface PostProps {
   [key: string]: any;
 }
 
+type Comment = {
+  writer: {
+    image: string;
+    nickname: string;
+    id: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+  content: string;
+  id: number;
+};
+
 export interface Comments {
   nextCursor: number;
-  list: [
-    {
-      writer: {
-        image: string;
-        nickname: string;
-        id: number;
-      };
-      updatedAt: string;
-      createdAt: string;
-      content: string;
-      id: number;
-    }
-  ];
+  list: Comment[];
 }
