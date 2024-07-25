@@ -52,7 +52,7 @@ export default function AddBoard() {
           <button
             type="button"
             className={styles["submit-btn"]}
-            disabled={!title || !description}
+            disabled={!title.trim() || !description.trim()}
           >
             등록
           </button>
