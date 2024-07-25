@@ -33,3 +33,5 @@ export interface Comments {
   nextCursor: number;
   list: Comment[];
 }
+
+export type Order = "recent" | "like";

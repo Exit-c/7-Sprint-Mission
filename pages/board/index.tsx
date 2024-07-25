@@ -8,6 +8,7 @@ import SelectBtn from "@/components/SelectBtn";
 import GeneralPost from "@/components/GeneralPost";
 import { getArticles } from "@/lib/api";
 import { Articles } from "@/lib/type";
+import { Order } from "@/lib/type";
 import useDevice from "@/lib/useDevice";
 
 const initialArticleState = {
@@ -29,7 +30,7 @@ export default function Board() {
   const keyword =
     typeof router.query.keyword === "string" ? router.query.keyword : undefined;
   const { isDesktop, isTablet, isMobile } = useDevice();
-  const [order, setOrder] = useState<"recent" | "like">("recent");
+  const [order, setOrder] = useState<Order>("recent");
   const [bestPageSize, setBestPageSize] = useState<number>(3);
   const [bestArticles, setBestArticles] = useState<Articles[]>([
     initialArticleState,
