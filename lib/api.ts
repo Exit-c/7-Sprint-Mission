@@ -31,7 +31,7 @@ export async function getArticles(
   return await fetchWithErrorHandling(url);
 }
 
-export async function getArticleDetail(id: string | undefined): Promise<any> {
+export async function getArticleDetail(id: string | undefined) {
   if (id === undefined) {
     console.log("Error: Product ID is undefined");
     return;
@@ -43,10 +43,7 @@ export async function getArticleDetail(id: string | undefined): Promise<any> {
   return await fetchWithErrorHandling(url);
 }
 
-export async function getComments(
-  id: string | undefined,
-  limit: number = 3
-): Promise<any> {
+export async function getComments(id: string | undefined, limit: number = 3) {
   if (id === undefined) {
     console.log("Error: Product ID is undefined");
     return;
