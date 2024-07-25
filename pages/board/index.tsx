@@ -66,7 +66,7 @@ export default function Board() {
         <h2>베스트 게시글</h2>
         <div className={styles["bestpost-container"]}>
           {bestArticles.map((article) => (
-            <Link href={`/${article.id}`}>
+            <Link href={`/board/${article.id}`}>
               <BestPost article={article} key={article.id} />
             </Link>
           ))}
@@ -85,7 +85,7 @@ export default function Board() {
         </div>
         <div className={styles["bottom-wrap"]}>
           {generalArticles.map((article) => (
-            <Link href={`/${article.id}`}>
+            <Link href={`/board/${article.id}`}>
               <GeneralPost article={article} key={article.id} />
             </Link>
           ))}
