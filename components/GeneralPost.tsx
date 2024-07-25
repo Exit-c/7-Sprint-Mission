@@ -12,7 +12,7 @@ export default function GeneralPost({ article, ...rest }: PostProps) {
       <div className={styles["top-wrap"]}>
         <div className={styles.title}>{title}</div>
         {image && (
-          <Image
+          <img
             src={image}
             alt="게시글이미지"
             width="72"

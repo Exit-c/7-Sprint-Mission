@@ -19,7 +19,7 @@ export default function BestPost({ article, ...rest }: PostProps) {
       <div className={styles["description-wrap"]}>
         <div className={styles.title}>{title}</div>
         {image && (
-          <Image
+          <img
             src={image}
             alt="게시글이미지"
             width="72"
