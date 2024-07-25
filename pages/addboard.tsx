@@ -13,7 +13,7 @@ export default function AddBoard() {
   const [imgPreview, setImgPreview] = useState("");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const deleteImgRef = useRef<HTMLImageElement>(null);
+  const deleteIconRef = useRef<HTMLImageElement>(null);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -122,13 +122,13 @@ export default function AddBoard() {
               className={styles["image-delete"]}
               onClick={handleDeleteClick}
               onMouseEnter={() => {
-                if (deleteImgRef.current) {
-                  deleteImgRef.current.src = x_hover_ic.src;
+                if (deleteIconRef.current) {
+                  deleteIconRef.current.src = x_hover_ic.src;
                 }
               }}
               onMouseLeave={() => {
-                if (deleteImgRef.current) {
-                  deleteImgRef.current.src = x_ic.src;
+                if (deleteIconRef.current) {
+                  deleteIconRef.current.src = x_ic.src;
                 }
               }}
             >
@@ -138,7 +138,7 @@ export default function AddBoard() {
                 className={styles["image-delete-img"]}
                 width="20"
                 height="20"
-                ref={deleteImgRef}
+                ref={deleteIconRef}
               />
             </button>
           </div>
