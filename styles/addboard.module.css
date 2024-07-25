@@ -16,7 +16,7 @@
   line-height: 32px;
 }
 
-.top-wrap > .submit-btn {
+.top-wrap .submit-btn {
   width: 74px;
   height: 42px;
   border: none;
@@ -29,7 +29,7 @@
   cursor: pointer;
 }
 
-.top-wrap > .submit-btn:disabled {
+.top-wrap .submit-btn:disabled {
   color: #f3f4f6;
   background-color: #9ca3af;
   cursor: default;

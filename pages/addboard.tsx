@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, ChangeEvent } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/addboard.module.css";
 import plus_ic from "@/public/ic_plus.svg";
@@ -47,13 +48,15 @@ export default function AddBoard() {
     <form className={styles.container}>
       <div className={styles["top-wrap"]}>
         <h2>게시글 쓰기</h2>
-        <button
-          type="button"
-          className={styles["submit-btn"]}
-          disabled={!title || !description}
-        >
-          등록
-        </button>
+        <Link href="/board" className={styles["submit-link"]}>
+          <button
+            type="button"
+            className={styles["submit-btn"]}
+            disabled={!title || !description}
+          >
+            등록
+          </button>
+        </Link>
       </div>
       <label htmlFor="title" className={styles.label}>
         *제목
