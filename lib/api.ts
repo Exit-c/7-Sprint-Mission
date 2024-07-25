@@ -1,30 +1,34 @@
 const BASE_URL = "https://panda-market-api.vercel.app";
 
+async function fetchWithErrorHandling(url: string) {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data", error);
+    throw error;
+  }
+}
+
 export async function getArticles(
   page: number = 1,
   pageSize: number,
   orderBy: string,
   keyword = ""
 ) {
-  try {
-    const encodedPage = encodeURIComponent(page);
-    const encodedPageSize = encodeURIComponent(pageSize);
-    const encodedOrderBy = encodeURIComponent(orderBy);
-    const encodedKeyword = encodeURIComponent(keyword);
+  const encodedPage = encodeURIComponent(page);
+  const encodedPageSize = encodeURIComponent(pageSize);
+  const encodedOrderBy = encodeURIComponent(orderBy);
+  const encodedKeyword = encodeURIComponent(keyword);
 
-    const response = await fetch(
-      `${BASE_URL}/articles?page=${encodedPage}&pageSize=${encodedPageSize}&orderBy=${encodedOrderBy}&keyword=${encodedKeyword}`
-    );
+  const url = `${BASE_URL}/articles?page=${encodedPage}&pageSize=${encodedPageSize}&orderBy=${encodedOrderBy}&keyword=${encodedKeyword}`;
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const article = response.json();
-
-    return article;
-  } catch (error) {
-    console.error("Error fetching Articles", error);
-  }
+  return await fetchWithErrorHandling(url);
 }
 
 export async function getArticleDetail(id: string | undefined): Promise<any> {
@@ -33,21 +37,10 @@ export async function getArticleDetail(id: string | undefined): Promise<any> {
     return;
   }
 
-  try {
-    const encodedId = encodeURIComponent(id);
+  const encodedId = encodeURIComponent(id);
+  const url = `${BASE_URL}/articles/${encodedId}`;
 
-    const response = await fetch(`${BASE_URL}/articles/${encodedId}`);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const article = response.json();
-
-    return article;
-  } catch (error) {
-    console.error("Error fetching Article", error);
-  }
+  return await fetchWithErrorHandling(url);
 }
 
 export async function getComments(
@@ -59,22 +52,9 @@ export async function getComments(
     return;
   }
 
-  try {
-    const encodedId = encodeURIComponent(id);
-    const encodedLimit = encodeURIComponent(limit);
+  const encodedId = encodeURIComponent(id);
+  const encodedLimit = encodeURIComponent(limit);
+  const url = `${BASE_URL}/articles/${encodedId}/comments?limit=${encodedLimit}`;
 
-    const response = await fetch(
-      `${BASE_URL}/articles/${encodedId}/comments?limit=${encodedLimit}`
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const comments = response.json();
-
-    return comments;
-  } catch (error) {
-    console.error("Error fetching Comments", error);
-  }
+  return await fetchWithErrorHandling(url);
 }
