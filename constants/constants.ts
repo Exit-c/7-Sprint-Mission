@@ -9,3 +9,16 @@ export const SCREEN_SIZE = {
   MOBILE_MIN_WIDTH,
   MOBILE_MAX_WIDTH: TABLET_MIN_WIDTH - 1,
 } as const;
+
+export enum ORDER_TYPE_ENUM {
+  recent = "recent",
+  like = "like",
+}
+
+export const orderTypeKR = {
+  [ORDER_TYPE_ENUM.recent]: "최신순",
+  [ORDER_TYPE_ENUM.like]: "추천순",
+} as const;
+
+export const orderTypeKeys = Object.values(ORDER_TYPE_ENUM);
+export const defaultOrderType = ORDER_TYPE_ENUM.recent;

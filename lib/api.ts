@@ -1,3 +1,5 @@
+import { Order } from "./type";
+
 const BASE_URL = "https://panda-market-api.vercel.app";
 
 async function fetchWithErrorHandling(url: string) {
@@ -18,7 +20,7 @@ async function fetchWithErrorHandling(url: string) {
 export async function getArticles(
   page: number = 1,
   pageSize: number,
-  orderBy: string,
+  orderBy: Order,
   keyword = ""
 ) {
   const encodedPage = encodeURIComponent(page);

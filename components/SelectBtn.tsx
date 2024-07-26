@@ -1,24 +1,25 @@
 import { MouseEvent, useState } from "react";
-import styles from "@/components/SelectBtn.module.css";
 import Image from "next/image";
+import styles from "@/components/SelectBtn.module.css";
+import { Order } from "@/lib/type";
+import { orderTypeKR } from "@/constants/constants";
 import sort_ic from "@/public/ic_sort.svg";
 
 interface Props {
-  order: string;
-  setOrder: React.Dispatch<React.SetStateAction<"recent" | "like">>;
+  order: Order;
+  setOrder: React.Dispatch<React.SetStateAction<Order>>;
+  options: Order[];
 }
 
-export default function SelectBtn({ order, setOrder }: Props) {
+export default function SelectBtn({ order, setOrder, options }: Props) {
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
 
   const handleOrderSelectClick = () => {
     setIsDropdownVisible((prev) => !prev);
   };
 
-  const handleDropdownClick = (e: MouseEvent<HTMLLIElement>) => {
-    const target = e.currentTarget;
-
-    setOrder(target.id === "recent" ? "recent" : "like");
+  const handleDropdownClick = (option: Order) => {
+    setOrder(option);
   };
 
   return (
@@ -28,7 +29,7 @@ export default function SelectBtn({ order, setOrder }: Props) {
         className={styles["order-select"]}
         onClick={handleOrderSelectClick}
       >
-        {order === "recent" ? "최신순" : "좋아요순"}
+        {orderTypeKR[order]}
       </button>
       <button
         type="button"
@@ -46,20 +47,17 @@ export default function SelectBtn({ order, setOrder }: Props) {
       </button>
       {isDropdownVisible && (
         <ul className={styles["order-dropdown"]}>
-          <li
-            className={styles["order-option"]}
-            id="recent"
-            onClick={handleDropdownClick}
-          >
-            최신순
-          </li>
-          <li
-            className={styles["order-option"]}
-            id="like"
-            onClick={handleDropdownClick}
-          >
-            좋아요순
-          </li>
+          {options.map((option) => {
+            return (
+              <li
+                className={styles["order-option"]}
+                id="recent"
+                onClick={() => handleDropdownClick(option)}
+              >
+                {orderTypeKR[option]}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

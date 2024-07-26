@@ -1,3 +1,5 @@
+import { ORDER_TYPE_ENUM } from "@/constants/constants";
+
 export interface Article {
   content: string;
   createdAt: string;
@@ -34,4 +36,4 @@ export interface Comments {
   list: Comment[];
 }
 
-export type Order = "recent" | "like";
+export type Order = keyof typeof ORDER_TYPE_ENUM; // 'recent' | 'like'

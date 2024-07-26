@@ -9,7 +9,8 @@ import GeneralPost from "@/components/GeneralPost";
 import { getArticles } from "@/lib/api";
 import { Article } from "@/lib/type";
 import { Order } from "@/lib/type";
-import useDevice from "@/lib/useDevice";
+import { defaultOrderType, orderTypeKeys } from "@/constants/constants";
+import useDevice from "@/hooks/useDevice";
 
 const initialArticleState = {
   content: "",
@@ -30,7 +31,7 @@ export default function Board() {
   const keyword =
     typeof router.query.keyword === "string" ? router.query.keyword : undefined;
   const { isDesktop, isTablet, isMobile } = useDevice();
-  const [order, setOrder] = useState<Order>("recent");
+  const [order, setOrder] = useState<Order>(defaultOrderType);
   const [bestPageSize, setBestPageSize] = useState<number>(3);
   const [bestArticles, setBestArticles] = useState<Article[]>([
     initialArticleState,
@@ -51,7 +52,7 @@ export default function Board() {
 
   useEffect(() => {
     const getArticlesApi = async () => {
-      const bestArticles = await getArticles(1, bestPageSize, "recent");
+      const bestArticles = await getArticles(1, bestPageSize, defaultOrderType);
       const generalArticles = await getArticles(1, 10, order, keyword);
 
       setBestArticles(bestArticles.list);
@@ -82,7 +83,11 @@ export default function Board() {
         </div>
         <div className={styles["middle-wrap"]}>
           <SearchForm />
-          <SelectBtn order={order} setOrder={setOrder} />
+          <SelectBtn
+            order={order}
+            setOrder={setOrder}
+            options={orderTypeKeys}
+          />
         </div>
         <div className={styles["bottom-wrap"]}>
           {generalArticles.map((article) => (
