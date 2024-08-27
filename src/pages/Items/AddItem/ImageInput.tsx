@@ -14,11 +14,10 @@ const ImageInput = ({ imgFileUpload }: Props) => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (e.target.files) {
-      setImgFile(e.target.files[0]);
-    }
 
     if (file) {
+      setImgFile(file);
+
       const formData = new FormData();
       formData.append("image", file);
       imgFileUpload(formData);
