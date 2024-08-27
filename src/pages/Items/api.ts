@@ -1,4 +1,6 @@
-import { postProduct } from "../../types/product";
+import { PostProduct } from "../../types/product";
+
+const token = localStorage.getItem("accessToken");
 
 export const getProductItem = async (
   currentPage: number = 1,
@@ -71,9 +73,7 @@ export const getProductDetailComments = async (
   }
 };
 
-export const postAddItem = async (data: postProduct) => {
-  const token = localStorage.getItem("accessToken");
-
+export const postAddItem = async (data: PostProduct) => {
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/products`,
@@ -98,8 +98,6 @@ export const postAddItem = async (data: postProduct) => {
 };
 
 export const postUploadImage = async (imgFile: FormData) => {
-  const token = localStorage.getItem("accessToken");
-
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/images/upload`,
@@ -119,5 +117,75 @@ export const postUploadImage = async (imgFile: FormData) => {
     return response.json();
   } catch (error) {
     console.error("Image POST 요청에 실패했습니다", error);
+  }
+};
+
+export const postComment = async (id: number, content: string) => {
+  try {
+    const response = await fetch(
+      `https://panda-market-api.vercel.app/products/${id}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Comment POST 요청에 실패했습니다", error);
+  }
+};
+
+export const editComment = async (id: number, content: string) => {
+  try {
+    const response = await fetch(
+      `https://panda-market-api.vercel.app/comments/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Comment PATCH 요청에 실패했습니다", error);
+  }
+};
+
+export const deleteComment = async (id: number) => {
+  try {
+    const response = await fetch(
+      `https://panda-market-api.vercel.app/comments/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Comment Delete 요청에 실패했습니다", error);
   }
 };
