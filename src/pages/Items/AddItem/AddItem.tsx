@@ -8,7 +8,7 @@ import TitleInput from "./TitleInput";
 import DescriptionInput from "./DescriptionInput";
 import { postAddItem, postUploadImage } from "../api";
 import { useMutation } from "@tanstack/react-query";
-import { postProduct } from "../../../types/product";
+import { PostProduct } from "../../../types/product";
 
 export interface IsValid {
   name: boolean;
@@ -27,7 +27,7 @@ const AddItem = () => {
     price: false,
     tags: false,
   });
-  const [inputValues, setInputValues] = useState<postProduct>({
+  const [inputValues, setInputValues] = useState<PostProduct>({
     images: [],
     name: "",
     description: "",
@@ -75,7 +75,7 @@ const AddItem = () => {
   };
 
   const uploadPostMutation = useMutation({
-    mutationFn: (newPost: postProduct) => postAddItem(newPost),
+    mutationFn: (newPost: PostProduct) => postAddItem(newPost),
     onSuccess: (data) => {
       const id = data.id;
       navigate(`/items/${id}`);

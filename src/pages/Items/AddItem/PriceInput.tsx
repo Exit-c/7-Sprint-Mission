@@ -13,10 +13,6 @@ const PriceInput = ({ isValueCheck }: Props) => {
 
     inputValue = inputValue.replace(/[^0-9]/g, "");
 
-    // const formattedValue = inputValue
-    //   ? Number(inputValue).toLocaleString()
-    //   : "";
-
     setInputValue(inputValue);
   };
 
