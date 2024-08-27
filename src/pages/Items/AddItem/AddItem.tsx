@@ -76,8 +76,7 @@ const AddItem = () => {
 
   const uploadPostMutation = useMutation({
     mutationFn: (newPost: PostProduct) => postAddItem(newPost),
-    onSuccess: (data) => {
-      const id = data.id;
+    onSuccess: ({ id }) => {
       navigate(`/items/${id}`);
     },
   });
