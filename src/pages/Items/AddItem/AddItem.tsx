@@ -74,7 +74,7 @@ const AddItem = () => {
     }
   };
 
-  const uploadPostMutation = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (newPost: PostProduct) => postAddItem(newPost),
     onSuccess: ({ id }) => {
       navigate(`/items/${id}`);
@@ -89,7 +89,7 @@ const AddItem = () => {
       price: Number(inputValues.price),
     };
 
-    uploadPostMutation.mutate(newInputValues);
+    mutate(newInputValues);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
@@ -112,10 +112,7 @@ const AddItem = () => {
     >
       <div className="form-submit">
         <h2>상품 등록하기</h2>
-        <button
-          type="submit"
-          disabled={uploadPostMutation.isPending || !disabled}
-        >
+        <button type="submit" disabled={isPending || !disabled}>
           등록
         </button>
       </div>
