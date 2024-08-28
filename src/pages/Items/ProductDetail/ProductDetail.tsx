@@ -65,7 +65,7 @@ const ProductDetail = () => {
 
   return (
     <div className="product-container">
-      <ProductDetailInfo detailItem={detailItem} />
+      <ProductDetailInfo detailItem={detailItem} productId={id} />
       <ProductDetailInquiry productId={id} commentKey={productCommentsKey} />
       <ProductDetailComments
         comments={comments.list}

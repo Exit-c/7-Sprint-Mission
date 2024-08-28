@@ -3,10 +3,14 @@ import { IsValid } from "./AddItem";
 
 interface Props {
   isValueCheck: (currentValue: string, name: keyof IsValid) => void;
+  price: number;
 }
 
-const PriceInput = ({ isValueCheck }: Props) => {
-  const [inputValue, setInputValue] = useState("");
+const PriceInput = ({ isValueCheck, price }: Props) => {
+  const stringPrice = String(price);
+  const [inputValue, setInputValue] = useState(
+    stringPrice === "undefined" ? "0" : stringPrice
+  );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;

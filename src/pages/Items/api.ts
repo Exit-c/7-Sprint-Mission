@@ -1,7 +1,5 @@
 import { PostProduct } from "../../types/product";
 
-const token = localStorage.getItem("accessToken");
-
 export const getProductItem = async (
   currentPage: number = 1,
   pageSize: number,
@@ -74,6 +72,7 @@ export const getProductDetailComments = async (
 };
 
 export const postAddItem = async (data: PostProduct) => {
+  const token = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/products`,
@@ -98,6 +97,7 @@ export const postAddItem = async (data: PostProduct) => {
 };
 
 export const postUploadImage = async (imgFile: FormData) => {
+  const token = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/images/upload`,
@@ -120,7 +120,56 @@ export const postUploadImage = async (imgFile: FormData) => {
   }
 };
 
+export const editItem = async (data: PostProduct, id: number) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      `https://panda-market-api.vercel.app/products/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Product PATCH 요청에 실패했습니다", error);
+  }
+};
+
+export const deleteProduct = async (id: number) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    const response = await fetch(
+      `https://panda-market-api.vercel.app/products/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Product DELETE 요청에 실패했습니다", error);
+  }
+};
+
 export const postComment = async (id: number, content: string) => {
+  const token = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/products/${id}/comments`,
@@ -145,6 +194,7 @@ export const postComment = async (id: number, content: string) => {
 };
 
 export const editComment = async (id: number, content: string) => {
+  const token = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/comments/${id}`,
@@ -169,6 +219,7 @@ export const editComment = async (id: number, content: string) => {
 };
 
 export const deleteComment = async (id: number) => {
+  const token = localStorage.getItem("accessToken");
   try {
     const response = await fetch(
       `https://panda-market-api.vercel.app/comments/${id}`,
