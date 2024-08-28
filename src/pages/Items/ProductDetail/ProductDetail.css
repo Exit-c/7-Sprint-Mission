@@ -323,9 +323,9 @@
 }
 
 .product-comment-section .product-comment-edit .comment-cancel {
-  width: 106px;
+  width: 68px;
   height: 42px;
-  border: 1px solid #d1d5db;
+  border: none;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
