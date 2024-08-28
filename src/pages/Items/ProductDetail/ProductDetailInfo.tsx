@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ProductDetailInfo = ({ detailItem, productId }: Props) => {
+  const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -46,13 +47,15 @@ const ProductDetailInfo = ({ detailItem, productId }: Props) => {
       <div className="product-info-wrap">
         <div className="product-name-wrap">
           <h2 className="product-name">{detailItem.name}</h2>
-          <button
-            type="button"
-            className="product-more-btn"
-            onClick={handleSelectClick}
-          >
-            <img src={moreIcon} alt="더보기버튼" />
-          </button>
+          {Number(userId) === detailItem.ownerId && (
+            <button
+              type="button"
+              className="product-more-btn"
+              onClick={handleSelectClick}
+            >
+              <img src={moreIcon} alt="더보기버튼" />
+            </button>
+          )}
           {dropdownVisible && (
             <ul className="order-dropdown">
               <li

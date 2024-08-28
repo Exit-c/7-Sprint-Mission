@@ -36,6 +36,7 @@ function timeAgo(dateString: string): string {
 }
 
 const ProductDetailComments = ({ comments, productId, commentKey }: Props) => {
+  const userId = localStorage.getItem("userId");
   const queryClient = useQueryClient();
   const [dropdownVisible, setDropdownVisible] = useState<number | null>(null);
   const [isEditVisible, setIsEditVisible] = useState<number | null>(null);
@@ -98,13 +99,15 @@ const ProductDetailComments = ({ comments, productId, commentKey }: Props) => {
             {isEditVisible !== comment.id && (
               <div className="product-comment-top">
                 <p className="product-comment">{comment.content}</p>
-                <button
-                  type="button"
-                  className="product-comment-btn"
-                  onClick={() => handleSelectClick(comment.id)}
-                >
-                  <img src={kebab_ic} alt="수정삭제버튼" />
-                </button>
+                {Number(userId) === comment.writer.id && (
+                  <button
+                    type="button"
+                    className="product-comment-btn"
+                    onClick={() => handleSelectClick(comment.id)}
+                  >
+                    <img src={kebab_ic} alt="수정삭제버튼" />
+                  </button>
+                )}
                 {dropdownVisible === comment.id && (
                   <ul className="order-dropdown">
                     <li
