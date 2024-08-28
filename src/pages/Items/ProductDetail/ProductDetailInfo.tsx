@@ -53,7 +53,7 @@ const ProductDetailInfo = ({ detailItem, productId }: Props) => {
               className="product-more-btn"
               onClick={handleSelectClick}
             >
-              <img src={moreIcon} alt="더보기버튼" />
+              <img src={moreIcon} alt="수정삭제버튼" />
             </button>
           )}
           {dropdownVisible && (
