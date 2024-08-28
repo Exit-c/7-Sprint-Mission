@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import moreIcon from "../../../assets/ic_kebab.svg";
+import kebab_ic from "../../../assets/ic_kebab.svg";
 import heartIcon from "../../../assets/ic_heart_detail.svg";
 import { DetailItem } from "./ProductDetail";
 import { deleteProduct } from "../api";
@@ -53,7 +53,7 @@ const ProductDetailInfo = ({ detailItem, productId }: Props) => {
               className="product-more-btn"
               onClick={handleSelectClick}
             >
-              <img src={moreIcon} alt="수정삭제버튼" />
+              <img src={kebab_ic} alt="수정삭제버튼" />
             </button>
           )}
           {dropdownVisible && (
