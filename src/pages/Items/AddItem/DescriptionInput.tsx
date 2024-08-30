@@ -3,10 +3,10 @@ import { IsValid } from "./AddItem";
 
 interface Props {
   isValueCheck: (currentValue: string, name: keyof IsValid) => void;
-  description: string;
+  description?: string;
 }
 
-const DescriptionInput = ({ isValueCheck, description }: Props) => {
+const DescriptionInput = ({ isValueCheck, description = "" }: Props) => {
   const [inputValue, setInputValue] = useState(description);
 
   const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {

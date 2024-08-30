@@ -5,7 +5,7 @@ import { IsValid } from "./AddItem";
 
 interface Props {
   isValueCheck: (currentValue: string | string[], name: keyof IsValid) => void;
-  tags: string[];
+  tags?: string[];
 }
 
 const TagInput = ({ isValueCheck, tags }: Props) => {

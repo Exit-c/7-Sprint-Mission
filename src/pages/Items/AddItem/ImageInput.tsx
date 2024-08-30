@@ -5,10 +5,10 @@ import deleteHoverIcon from "../../../assets/ic_X_hover.svg";
 
 interface Props {
   imgFileUpload: (imgFile: FormData) => void;
-  image: string;
+  image?: string;
 }
 
-const ImageInput = ({ imgFileUpload, image }: Props) => {
+const ImageInput = ({ imgFileUpload, image = "" }: Props) => {
   const [imgFile, setImgFile] = useState<File | null>(null);
   const [imgPreview, setImgPreview] = useState<string>(image);
   const fileInputRef = useRef<HTMLInputElement>(null);

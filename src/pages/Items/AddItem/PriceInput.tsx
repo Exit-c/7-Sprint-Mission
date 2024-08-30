@@ -3,7 +3,7 @@ import { IsValid } from "./AddItem";
 
 interface Props {
   isValueCheck: (currentValue: string, name: keyof IsValid) => void;
-  price: number;
+  price?: number;
 }
 
 const PriceInput = ({ isValueCheck, price }: Props) => {
