@@ -6,10 +6,7 @@ interface RequestOptions {
   body?: string | FormData;
 }
 
-const fetchRequest = async (
-  url: string,
-  options: RequestOptions
-): Promise<any> => {
+const fetchRequest = async (url: string, options: RequestOptions) => {
   try {
     const response = await fetch(url, {
       method: options.method,
